@@ -105,3 +105,20 @@ def test_heal_ci_dry_run_changes_nothing_and_cli(project, capsys, monkeypatch):
     assert "suggested" in capsys.readouterr().out
     assert main(["inspect", str(project / "screens" / "ios_login_v2.xml")]) == 0
     assert "ios screen" in capsys.readouterr().out
+
+
+def test_same_length_edit_in_the_same_second_is_not_hidden_by_bytecode(project):
+    """Regression: a same-size rewrite within one second used to re-run stale bytecode and revert a good fix."""
+    import os
+
+    from k11_appium_qa.healci import _write
+
+    page = project / "tests/pages/login_page.py"
+    cache = page.parent / "__pycache__"
+    cache.mkdir(exist_ok=True)
+    stale = cache / "login_page.cpython-311.pyc"
+    stale.write_bytes(b"stale")
+    st = page.stat()
+    _write(page, page.read_text("utf8").replace("password-input", "password-field"))
+    os.utime(page, ns=(st.st_atime_ns, st.st_mtime_ns))     # same size, same mtime: worst case
+    assert page.stat().st_size == st.st_size and not stale.exists()
