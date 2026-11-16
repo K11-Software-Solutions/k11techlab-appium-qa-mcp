@@ -39,4 +39,5 @@ include = ["src", "README.md", "LICENSE"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+norecursedirs = ["fixtures"]
 timeout = 300
