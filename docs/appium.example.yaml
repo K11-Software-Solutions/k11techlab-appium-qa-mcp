@@ -1,0 +1,9 @@
+# .qa-mcp/appium.yaml: lets the MCP tools read the live device (optional; saved screens work without it)
+server: http://127.0.0.1:4723
+capabilities:
+  platformName: Android                    # or iOS
+  appium:automationName: UiAutomator2      # XCUITest for iOS
+  appium:appPackage: com.k11.shop
+  appium:appActivity: .MainActivity
+  appium:noReset: true
+  # BrowserStack / Sauce Labs: put the cloud URL in server and credentials in ${ENV:NAME}

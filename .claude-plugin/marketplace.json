@@ -1,0 +1,15 @@
+{
+  "name": "k11-appium-qa",
+  "description": "k11 Appium QA: self-healing Appium locators for Android and iOS apps, with verified re-runs and an audit trail.",
+  "owner": {
+    "name": "K11 Software Solutions",
+    "url": "https://k11softwaresolutions.com"
+  },
+  "plugins": [
+    {
+      "name": "appium-qa",
+      "source": "./",
+      "description": "Self-healing Appium locators for Android and iOS apps, healed on the screen each test failed on."
+    }
+  ]
+}

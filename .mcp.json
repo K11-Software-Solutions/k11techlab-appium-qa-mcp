@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "appium-qa": {
+      "command": "uvx",
+      "args": [
+        "k11-appium-qa-mcp"
+      ],
+      "env": {
+        "QA_MCP_ROOT": "${CLAUDE_PROJECT_DIR}"
+      }
+    }
+  }
+}

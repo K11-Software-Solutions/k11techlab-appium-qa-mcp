@@ -1,0 +1,22 @@
+{
+  "name": "appium-qa",
+  "version": "0.1.0",
+  "description": "Self-healing Appium locators for native and hybrid Android and iOS apps from Claude Code: heals against the screen a test failed on, Python and Java Page Objects, verified re-runs, accessibility checks and an audit trail.",
+  "author": {
+    "name": "Kavita A. Jadhav",
+    "url": "https://k11softwaresolutions.com"
+  },
+  "homepage": "https://github.com/K11-Software-Solutions/k11techlab-appium-qa-mcp",
+  "repository": "https://github.com/K11-Software-Solutions/k11techlab-appium-qa-mcp",
+  "license": "MIT",
+  "keywords": [
+    "appium",
+    "mobile-testing",
+    "android",
+    "ios",
+    "self-healing",
+    "accessibility",
+    "qa",
+    "mcp"
+  ]
+}

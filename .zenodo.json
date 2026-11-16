@@ -1,0 +1,37 @@
+{
+  "title": "k11 Appium QA MCP Server",
+  "upload_type": "software",
+  "description": "<p>MCP server and CI tool for self-healing Appium locators in native and hybrid Android and iOS apps: heals broken locators against the screen each test failed on, rewrites Python and Java Page Objects including AndroidFindBy and iOSXCUITFindBy annotations, verifies every change by re-running on the device, flags accessibility issues, and writes an audit report that k11 Release Gate reads as evidence.</p><p>Source code: <a href=\"https://github.com/K11-Software-Solutions/k11techlab-appium-qa-mcp\">https://github.com/K11-Software-Solutions/k11techlab-appium-qa-mcp</a></p>",
+  "creators": [
+    {
+      "name": "Jadhav, Kavita",
+      "orcid": "0009-0009-8507-4976",
+      "affiliation": "K11 Software Solutions"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "Appium",
+    "mobile testing",
+    "Android",
+    "iOS",
+    "self-healing tests",
+    "accessibility",
+    "model context protocol",
+    "quality engineering"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/K11-Software-Solutions/k11techlab-appium-qa-mcp",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.18535/ijecs/v15i06.5563",
+      "relation": "isSupplementTo",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    }
+  ]
+}

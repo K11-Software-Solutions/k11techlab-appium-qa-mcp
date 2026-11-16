@@ -1,0 +1,41 @@
+# Copy to .github/workflows/ in your app's test repo. Runs the suite on an Android emulator,
+# heals broken locators (verified by re-running on the emulator) and opens a pull request.
+name: Heal mobile locators
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1-5"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  heal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules && sudo udevadm trigger --name-match=kvm
+      - run: npm install -g appium && appium driver install uiautomator2
+      - run: pip install -r requirements.txt k11-appium-qa-mcp
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          script: |
+            (appium > appium.log 2>&1 &) && sleep 8
+            k11-appium-qa-mcp heal-ci --apply --fail-on never
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: heal/mobile-locators
+          title: "Heal broken mobile locators"
+          body-path: .qa-mcp/heal-report/heal-report.md
+          commit-message: "Heal broken mobile locators (k11 Appium QA)"
