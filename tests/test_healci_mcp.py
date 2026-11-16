@@ -77,7 +77,8 @@ def test_heal_ci_heals_a_redesign_across_rounds(project):
                      ('(AppiumBy.ACCESSIBILITY_ID, "password-input")', '(AppiumBy.ACCESSIBILITY_ID, "password-field")'),
                      ('(AppiumBy.ACCESSIBILITY_ID, "login-button")', '(AppiumBy.ACCESSIBILITY_ID, "sign-in-button")')]:
         it = by[("test_log_in", loc)]
-        assert (it["outcome"], it["suggestion"], it["verified"]) == ("applied", new, True), it
+        assert (it["outcome"], it["suggestion"], it["verified"]) == ("applied", new, True), json.dumps(
+            [{k: i.get(k) for k in ("test", "locator", "outcome", "suggestion", "verified", "note")} for i in rep["items"]], indent=1)
     page = (project / "tests/pages/login_page.py").read_text("utf8")
     assert 'EMAIL = (AppiumBy.ACCESSIBILITY_ID, "email-field")' in page and '"sign-in-button"' in page
     # the sign-up button lost its accessibility id: not a confident change, left for a person
